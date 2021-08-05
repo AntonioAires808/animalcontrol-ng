@@ -1,6 +1,76 @@
-<h1>{{pageTitle}}</h1>
-<ul>
-    <li *ngFor="let animal of animals">{{animals}}</li>
-</ul>
+<div *ngIf="selectedAnimal" class="col-sm-6">
 
-<!-- test commit -->
+    <div class="mr-auto">
+        <app-title [title]="'Current pet: ' + selectedAnimal.name"></app-title>
+    </div>
+
+    <form [formGroup]="animalForm" (submit)="animalSubmit()">
+        <div class="form-group">
+            <label for="formGroupExampleInput">Name</label>
+            <input type="text" formControlName="name" class="form-control" id="formGroupExampleInput"
+                placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput2">Nickname</label>
+            <input type="text" formControlName="nickname" class="form-control" id="formGroupExampleInput2"
+                placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput3">Age</label>
+            <input type="text" formControlName="age" class="form-control" id="formGroupExampleInput3"
+                placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput4">Chip Number</label>
+            <input type="text" formControlName="chipNumber" class="form-control" id="formGroupExampleInput4"
+                placeholder="">
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-warning" (click)="back()">Back to list</button>
+            </div>
+            <div class="mr-auto">
+                <button class="btn btn-success" [disabled]="!animalForm.valid">Update</button>
+            </div>
+        </div>
+    </form>
+  
+    
+</div>
+
+<div *ngIf="!selectedAnimal">
+
+    <app-title [title]="title"></app-title>
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Name</th>
+                <th scope="col">Nickname</th>
+                <th scope="col">Age</th>
+                <th scope="col">Chip Number</th>
+                <th scope="col">Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let animal of animals">
+                <th scope="row">{{animal.id}}</th>
+                <td>{{animal.name}}</td>
+                <td>{{animal.nickname}}</td>
+                <td>{{animal.age}}</td>
+                <td>{{animal.chipNumber}}</td>
+                <td>
+                    <div class="btn-group">
+                        <button (click)="animalSelected(animal)" class="btn btn-warning">Details</button>
+                        <button class="btn btn-primary">Change</button>
+                        <button class="btn btn-danger">Exclude</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="row">
+
+</div>
