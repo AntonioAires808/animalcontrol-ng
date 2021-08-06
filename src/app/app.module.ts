@@ -13,6 +13,7 @@ import { TitleComponent } from './title/title.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BsDropdownModule.forRoot(),
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

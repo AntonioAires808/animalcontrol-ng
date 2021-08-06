@@ -1,1 +1,66 @@
-<app-title [title]="title"></app-title>
+<div *ngIf="selectedOwner" class="col-sm-6">
+
+    <div class="mr-auto">
+        <app-title [title]="'Owner is: ' + selectedOwner.name"></app-title>
+    </div>
+
+    <form [formGroup]="ownerForm" (submit)="ownerSubmit()">
+        <div class="form-group">
+            <label for="formGroupExampleInput">Name</label>
+            <input type="text" formControlName="name" class="form-control" id="formGroupExampleInput"
+                placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput2">Address</label>
+            <input type="text" formControlName="address" class="form-control" id="formGroupExampleInput2"
+                placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput3">Schedule</label>
+            <input type="text" formControlName="schedule" class="form-control" id="formGroupExampleInput3"
+                placeholder="">
+        </div>        
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-warning" (click)="back()">Back to list</button>
+            </div>
+            <div class="mr-auto">
+                <button class="btn btn-success" [disabled]="!ownerForm.valid">Update</button>
+            </div>
+        </div>
+    </form>
+  
+    
+</div>
+
+<div *ngIf="!selectedOwner">
+
+    <app-title [title]="title"></app-title>
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>                
+                <th scope="col">Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Schedule</th>    
+                <th scope="col">Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let owner of owners">
+                <td><button (click)="ownerSelected(owner)" class="col-md-10 btn btn-primary btn-sm">{{owner.name}}</button></td>       
+                <td>{{owner.address}}</td>
+                <td>{{owner.schedule}}</td> 
+                <td>
+                    <div class="btn-group col-md-10">                        
+                        <button class="btn btn-sm btn-primary">View pets</button>
+                        <button class="btn btn-sm btn-danger">Put on hold</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="row">
+
+</div>

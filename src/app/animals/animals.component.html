@@ -7,8 +7,7 @@
     <form [formGroup]="animalForm" (submit)="animalSubmit()">
         <div class="form-group">
             <label for="formGroupExampleInput">Name</label>
-            <input type="text" formControlName="name" class="form-control" id="formGroupExampleInput"
-                placeholder="">
+            <input type="text" formControlName="name" class="form-control" id="formGroupExampleInput" placeholder="">
         </div>
         <div class="form-group">
             <label for="formGroupExampleInput2">Nickname</label>
@@ -17,8 +16,7 @@
         </div>
         <div class="form-group">
             <label for="formGroupExampleInput3">Age</label>
-            <input type="text" formControlName="age" class="form-control" id="formGroupExampleInput3"
-                placeholder="">
+            <input type="text" formControlName="age" class="form-control" id="formGroupExampleInput3" placeholder="">
         </div>
         <div class="form-group">
             <label for="formGroupExampleInput4">Chip Number</label>
@@ -34,8 +32,8 @@
             </div>
         </div>
     </form>
-  
-    
+
+
 </div>
 
 <div *ngIf="!selectedAnimal">
@@ -44,7 +42,6 @@
     <table class="table table-hover">
         <thead class="thead-dark">
             <tr>
-                <th scope="col"></th>
                 <th scope="col">Name</th>
                 <th scope="col">Nickname</th>
                 <th scope="col">Age</th>
@@ -54,16 +51,15 @@
         </thead>
         <tbody>
             <tr *ngFor="let animal of animals">
-                <th scope="row">{{animal.id}}</th>
-                <td>{{animal.name}}</td>
+                <td><button (click)="animalSelected(animal)"
+                        class="col-md-10 btn btn-primary btn-sm">{{animal.name}}</button></td>
                 <td>{{animal.nickname}}</td>
                 <td>{{animal.age}}</td>
                 <td>{{animal.chipNumber}}</td>
                 <td>
-                    <div class="btn-group">
-                        <button (click)="animalSelected(animal)" class="btn btn-warning">Details</button>
-                        <button class="btn btn-primary">Change</button>
-                        <button class="btn btn-danger">Exclude</button>
+                    <div class="btn-group col-md-10">
+                        <button class="btn btn-sm btn-primary" (click)="openModal(template)">View owner</button>
+                        <button class="btn btn-sm btn-danger">Monthly ticket</button>
                     </div>
                 </td>
             </tr>
@@ -71,6 +67,13 @@
     </table>
 </div>
 
-<div class="row">
-
-</div>
+<ng-template #template>
+    <div class="modal-body">
+        <app-owners></app-owners>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn pull-right" aria-label="Close" (click)="modalRef.hide()">         
+            Close
+        </button>
+    </div>
+</ng-template>
