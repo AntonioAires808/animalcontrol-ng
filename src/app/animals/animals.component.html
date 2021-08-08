@@ -51,14 +51,13 @@
         </thead>
         <tbody>
             <tr *ngFor="let animal of animals">
-                <td><button (click)="animalSelected(animal)"
-                        class="col-md-10 btn btn-primary btn-sm">{{animal.name}}</button></td>
+                <td><button (click)="animalSelected(animal)" class="col-md-10 btn btn-primary btn-sm">{{animal.name}}</button></td>
                 <td>{{animal.nickname}}</td>
                 <td>{{animal.age}}</td>
                 <td>{{animal.chipNumber}}</td>
                 <td>
                     <div class="btn-group col-md-10">
-                        <button class="btn btn-sm btn-primary" (click)="openModal(template)">View owner</button>
+                        <button class="btn btn-sm btn-primary" (click)="openModal(template, animal)">View owner</button>
                         <button class="btn btn-sm btn-danger">Monthly ticket</button>
                     </div>
                 </td>
@@ -68,8 +67,8 @@
 </div>
 
 <ng-template #template>
-    <div class="modal-body">
-        <app-owners></app-owners>
+    <div class="modal-header">
+        <h1>{{animal}}</h1>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn pull-right" aria-label="Close" (click)="modalRef.hide()">         

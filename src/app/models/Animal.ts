@@ -4,4 +4,5 @@ export class Animal {
     nickname!: string;
     age!: Number;
     chipNumber!: Number;
+    owner!: string;
 }

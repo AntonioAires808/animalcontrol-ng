@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Animal } from '../models/Animal';
@@ -22,6 +22,8 @@ export class AnimalsComponent implements OnInit {
     { id: 3, name: 'Diesel', nickname: 'N/A', chipNumber: 4421742, age: 5, owner: 'Susana' },
     { id: 4, name: 'Flake', nickname: 'Flakezinho', chipNumber: 3773731, age: 5, owner: 'Susana'}
   ];
+
+  public animal = {}; 
   
   constructor(private fb: FormBuilder, private modalService: BsModalService) {
     this.createForm();
@@ -31,8 +33,10 @@ export class AnimalsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  openModal(template: TemplateRef<any>) {
+  openModal(template: TemplateRef<any>, animal: Animal) {
     this.modalRef = this.modalService.show(template);
+    // Pass animal owner to display on modal
+    this.animal = animal.owner;
   }
 
   animalSelected(animal: Animal) {

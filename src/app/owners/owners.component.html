@@ -1,7 +1,7 @@
 <div *ngIf="selectedOwner" class="col-sm-6">
 
     <div class="mr-auto">
-        <app-title [title]="'Owner is: ' + selectedOwner.name"></app-title>
+        <app-title [title]="'Belongs to: ' + selectedOwner.name"></app-title>
     </div>
 
     <form [formGroup]="ownerForm" (submit)="ownerSubmit()">
